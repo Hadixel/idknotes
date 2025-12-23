@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "663197824508",
+    "project_id": "idknotes-flutter-first",
+    "storage_bucket": "idknotes-flutter-first.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663197824508:android:798a5003d259f96086ee79",
+        "android_client_info": {
+          "package_name": "com.idknotes.mynotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDyNmgM7lyKXlo3UXSt-8TvxPj6rZk2E14"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

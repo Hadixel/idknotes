@@ -6,6 +6,7 @@ import 'package:mynotes/views/login_view.dart';
 import 'package:mynotes/views/notes_view.dart';
 import 'package:mynotes/views/register_view.dart';
 import 'package:mynotes/views/verify_email_view.dart';
+import 'package:sqflite/sqflite.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();

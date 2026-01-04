@@ -227,7 +227,7 @@ class NotesService {
     try {
       await open();
     } on DatabaseAlreadyOpenExeption {
-      /////////////BE CAREFUL u changed "catch" with "on"
+      //BE CAREFUL u changed "catch" with "on"
       //empty
     }
   }

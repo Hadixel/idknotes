@@ -1,12 +1,13 @@
 import 'dart:async';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:mynotes/extensions/list/filter.dart';
 import 'package:mynotes/services/crud/crud_exeptions.dart';
 import 'package:sqflite/sqflite.dart';
 import 'package:path_provider/path_provider.dart'
     show MissingPlatformDirectoryException, getApplicationDocumentsDirectory;
-import 'package:path/path.dart' show current, join;
+import 'package:path/path.dart' show join;
 
 class NotesService {
   Database? _db;

@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:mynotes/constants/routes.dart';
-import 'package:mynotes/helpers/loading/loading_screen.dart';
-import 'package:mynotes/services/auth/bloc/auth_bloc.dart';
-import 'package:mynotes/services/auth/bloc/auth_event.dart';
-import 'package:mynotes/services/auth/bloc/auth_state.dart';
-import 'package:mynotes/services/auth/firebase_auth_provider.dart';
-import 'package:mynotes/views/forgot_password_view.dart';
-import 'package:mynotes/views/login_view.dart';
-import 'package:mynotes/views/note/create_update_note_view.dart';
-import 'package:mynotes/views/note/notes_view.dart';
-import 'package:mynotes/views/register_view.dart';
-import 'package:mynotes/views/verify_email_view.dart';
+import 'package:idknotes/constants/routes.dart';
+import 'package:idknotes/helpers/loading/loading_screen.dart';
+import 'package:idknotes/services/auth/bloc/auth_bloc.dart';
+import 'package:idknotes/services/auth/bloc/auth_event.dart';
+import 'package:idknotes/services/auth/bloc/auth_state.dart';
+import 'package:idknotes/services/auth/firebase_auth_provider.dart';
+import 'package:idknotes/views/forgot_password_view.dart';
+import 'package:idknotes/views/login_view.dart';
+import 'package:idknotes/views/note/create_update_note_view.dart';
+import 'package:idknotes/views/note/notes_view.dart';
+import 'package:idknotes/views/register_view.dart';
+import 'package:idknotes/views/verify_email_view.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Idknotes',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,

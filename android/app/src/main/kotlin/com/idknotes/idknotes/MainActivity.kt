@@ -1,4 +1,4 @@
-package com.idknotes.mynotes
+package com.idknotes.idknotes
 
 import io.flutter.embedding.android.FlutterActivity
 

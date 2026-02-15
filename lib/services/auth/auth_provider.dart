@@ -1,4 +1,4 @@
-import 'package:mynotes/services/auth/auth_user.dart';
+import 'package:idknotes/services/auth/auth_user.dart';
 
 abstract interface class AuthProvider {
   Future<void> initialize();

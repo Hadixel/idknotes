@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyDyNmgM7lyKXlo3UXSt-8TvxPj6rZk2E14',
-    appId: '1:663197824508:android:798a5003d259f96086ee79',
+    appId: '1:663197824508:android:d78096ad25e33fb186ee79',
     messagingSenderId: '663197824508',
     projectId: 'idknotes-flutter-first',
     storageBucket: 'idknotes-flutter-first.firebasestorage.app',
@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'idknotes-flutter-first.firebasestorage.app',
     iosBundleId: 'com.idknotes.mynotes',
   );
+
 }

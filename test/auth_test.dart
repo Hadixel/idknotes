@@ -1,6 +1,6 @@
-import 'package:mynotes/services/auth/auth_exeptions.dart';
-import 'package:mynotes/services/auth/auth_provider.dart';
-import 'package:mynotes/services/auth/auth_user.dart';
+import 'package:idknotes/services/auth/auth_exeptions.dart';
+import 'package:idknotes/services/auth/auth_provider.dart';
+import 'package:idknotes/services/auth/auth_user.dart';
 import 'package:test/test.dart';
 
 void main() {

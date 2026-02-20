@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.idknotes.idknotes"
-    compileSdk = flutter.compileSdkVersion
+    compileSdk = 36
     
     // تغییر مهم: اینجا نسخه دقیق ۲۹ که دانلود کردید را وارد کنید
     ndkVersion = "29.0.14206865"
@@ -38,4 +38,8 @@ android {
 
 flutter {
     source = "../.."
+}
+
+dependencies {
+    implementation("androidx.core:core-splashscreen:1.0.1")
 }

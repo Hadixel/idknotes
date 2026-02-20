@@ -1,47 +1,44 @@
-name: iOS Pods Action
+name: iOS Pods Auto-Generator
 
 on:
   workflow_dispatch:
 
 jobs:
-  pod-job:
+  build-and-install:
     runs-on: macos-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Install CocoaPods
-        run: gem install cocoapods
-
-      - name: Find Podfile and Run Commands
+      - name: Create Podfile and Install
         run: |
-          # پیدا کردن مسیر دقیق فایل Podfile در کل پروژه
-          PODFILE_PATH=$(find . -name "Podfile" -not -path "*/.*" | head -n 1)
+          # رفتن به پوشه ios (بر اساس لاگ‌های قبلی، مسیر مستقیم است)
+          cd ios
           
-          if [ -z "$PODFILE_PATH" ]; then
-            echo "خطا: هیچ فایلی با نام Podfile در کل پروژه پیدا نشد!"
-            ls -R
-            exit 1
-          fi
+          # ساخت یک Podfile استاندارد فلاتر
+          cat <<EOF > Podfile
+          platform :ios, '13.0'
+          target 'Runner' do
+            use_frameworks!
+            use_modular_headers!
+            
+            # اینجا پادهای مورد نظرت را میتوانی اضافه کنی
+            # pod 'Firebase/Analytics' 
+          end
+          EOF
           
-          # استخراج مسیر پوشه ای که Podfile در آن است
-          TARGET_DIR=$(dirname "$PODFILE_PATH")
-          echo "فایل پیدا شد در مسیر: $TARGET_DIR"
+          echo "Podfile created successfully."
           
-          cd "$TARGET_DIR"
-          
-          # اجرای دستورات اصلی
-          pod deintegrate
+          # نصب پادها
           pod install
 
-      - name: Upload iOS Result
+      - name: Upload Result
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ios-files-result
-          # این خط کل فایل های تغییر یافته را پیدا و زیپ می کند
+          name: ios-generated-files
           path: |
-            **/Podfile.lock
-            **/Pods/
-            **/*.xcworkspace
+            ios/Podfile
+            ios/Podfile.lock
+            ios/Pods/
+            ios/*.xcworkspace

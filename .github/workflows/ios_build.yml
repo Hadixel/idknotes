@@ -16,31 +16,23 @@ jobs:
 
       - name: Check Directory and Run Pods
         run: |
-          # نمایش لیست فایل‌ها برای اطمینان از وجود Podfile
-          ls -R 
-          
-          # رفتن به پوشه ios (اگر وجود دارد)
-          if [ -d "ios" ]; then
-            cd ios
-          fi
+          # رفتن به پوشه جدید
+          cd idknotes/ios
           
           # اجرای دستورات
           pod deintegrate
           
-          # فقط اگر Podfile وجود داشت install را بزن
           if [ -f "Podfile" ]; then
             pod install
           else
-            echo "خطا: فایل Podfile پیدا نشد!"
+            echo "خطا: فایل Podfile در مسیر idknotes/ios پیدا نشد!"
+            ls -R # این دستور برای این است که اگر باز هم خطا داد، ببینیم فایل کجاست
             exit 1
           fi
 
       - name: Upload iOS Folder
-        if: always() # حتی اگر مراحل قبلی خطا داشت، سعی کن فایل‌ها را آپلود کنی
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ios-files-result
-          path: |
-            **/Podfile.lock
-            **/Pods/
-            **/*.xcworkspace
+          path: idknotes/ios/

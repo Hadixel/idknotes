@@ -14,25 +14,34 @@ jobs:
       - name: Install CocoaPods
         run: gem install cocoapods
 
-      - name: Check Directory and Run Pods
+      - name: Find Podfile and Run Commands
         run: |
-          # رفتن به پوشه جدید
-          cd idknotes/ios
+          # پیدا کردن مسیر دقیق فایل Podfile در کل پروژه
+          PODFILE_PATH=$(find . -name "Podfile" -not -path "*/.*" | head -n 1)
           
-          # اجرای دستورات
-          pod deintegrate
-          
-          if [ -f "Podfile" ]; then
-            pod install
-          else
-            echo "خطا: فایل Podfile در مسیر idknotes/ios پیدا نشد!"
-            ls -R # این دستور برای این است که اگر باز هم خطا داد، ببینیم فایل کجاست
+          if [ -z "$PODFILE_PATH" ]; then
+            echo "خطا: هیچ فایلی با نام Podfile در کل پروژه پیدا نشد!"
+            ls -R
             exit 1
           fi
+          
+          # استخراج مسیر پوشه ای که Podfile در آن است
+          TARGET_DIR=$(dirname "$PODFILE_PATH")
+          echo "فایل پیدا شد در مسیر: $TARGET_DIR"
+          
+          cd "$TARGET_DIR"
+          
+          # اجرای دستورات اصلی
+          pod deintegrate
+          pod install
 
-      - name: Upload iOS Folder
+      - name: Upload iOS Result
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: ios-files-result
-          path: idknotes/ios/
+          # این خط کل فایل های تغییر یافته را پیدا و زیپ می کند
+          path: |
+            **/Podfile.lock
+            **/Pods/
+            **/*.xcworkspace

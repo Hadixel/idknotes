@@ -1,0 +1,30 @@
+name: iOS Pods Action
+
+on:
+  push:
+    branches: [ main ]  # هر زمان که روی شاخه main کد بفرستید اجرا می‌شود
+  workflow_dispatch:      # به شما اجازه می‌دهد دستی هم اجرا کنید
+
+jobs:
+  pod-job:
+    runs-on: macos-latest  # از سیستم‌عامل مکِ گیت‌هاب استفاده می‌کند
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2' # یا نسخه‌ای که پروژه‌تان نیاز دارد
+          bundler-cache: true
+
+      - name: Install CocoaPods
+        run: gem install cocoapods
+
+      - name: Run Pod Commands
+        run: |
+          cd ios
+          pod deintegrate
+          # اگر می‌خواهید پادها مجدد نصب شوند، خط زیر را هم اضافه کنید:
+          # pod install

@@ -1,35 +1,46 @@
 name: iOS Pods Action
 
 on:
-  push:
-    branches: [ main ]  # هر زمان که روی شاخه main کد بفرستید اجرا می‌شود
-  workflow_dispatch:      # به شما اجازه می‌دهد دستی هم اجرا کنید
+  workflow_dispatch:
 
 jobs:
   pod-job:
-    runs-on: macos-latest  # از سیستم‌عامل مکِ گیت‌هاب استفاده می‌کند
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2' # یا نسخه‌ای که پروژه‌تان نیاز دارد
-          bundler-cache: true
-
       - name: Install CocoaPods
         run: gem install cocoapods
 
-      - name: Run Pod Commands
+      - name: Check Directory and Run Pods
         run: |
-          cd ios
+          # نمایش لیست فایل‌ها برای اطمینان از وجود Podfile
+          ls -R 
+          
+          # رفتن به پوشه ios (اگر وجود دارد)
+          if [ -d "ios" ]; then
+            cd ios
+          fi
+          
+          # اجرای دستورات
           pod deintegrate
-          pod install  # حالا این را هم اضافه کردیم تا فایل‌های جدید ساخته شوند
+          
+          # فقط اگر Podfile وجود داشت install را بزن
+          if [ -f "Podfile" ]; then
+            pod install
+          else
+            echo "خطا: فایل Podfile پیدا نشد!"
+            exit 1
+          fi
 
       - name: Upload iOS Folder
+        if: always() # حتی اگر مراحل قبلی خطا داشت، سعی کن فایل‌ها را آپلود کنی
         uses: actions/upload-artifact@v4
         with:
-          name: ios-files-after-pod  # نام فایل زیپی که دانلود می‌کنی
-          path: ios/                 # مسیری که می‌خواهی زیپ شود
+          name: ios-files-result
+          path: |
+            **/Podfile.lock
+            **/Pods/
+            **/*.xcworkspace

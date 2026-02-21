@@ -1,35 +1,44 @@
-name: iOS Pods Action
+name: iOS Pods Auto-Generator
 
 on:
-  push:
-    branches: [ main ]  # هر زمان که روی شاخه main کد بفرستید اجرا می‌شود
-  workflow_dispatch:      # به شما اجازه می‌دهد دستی هم اجرا کنید
+  workflow_dispatch:
 
 jobs:
-  pod-job:
-    runs-on: macos-latest  # از سیستم‌عامل مکِ گیت‌هاب استفاده می‌کند
-
+  build-and-install:
+    runs-on: macos-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.2' # یا نسخه‌ای که پروژه‌تان نیاز دارد
-          bundler-cache: true
-
-      - name: Install CocoaPods
-        run: gem install cocoapods
-
-      - name: Run Pod Commands
+      - name: Create Podfile and Install
         run: |
+          # رفتن به پوشه ios (بر اساس لاگ‌های قبلی، مسیر مستقیم است)
           cd ios
-          pod deintegrate
-          pod install  # حالا این را هم اضافه کردیم تا فایل‌های جدید ساخته شوند
+          
+          # ساخت یک Podfile استاندارد فلاتر
+          cat <<EOF > Podfile
+          platform :ios, '13.0'
+          target 'Runner' do
+            use_frameworks!
+            use_modular_headers!
+            
+            # اینجا پادهای مورد نظرت را میتوانی اضافه کنی
+            # pod 'Firebase/Analytics' 
+          end
+          EOF
+          
+          echo "Podfile created successfully."
+          
+          # نصب پادها
+          pod install
 
-      - name: Upload iOS Folder
+      - name: Upload Result
+        if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: ios-files-after-pod  # نام فایل زیپی که دانلود می‌کنی
-          path: ios/                 # مسیری که می‌خواهی زیپ شود
+          name: ios-generated-files
+          path: |
+            ios/Podfile
+            ios/Podfile.lock
+            ios/Pods/
+            ios/*.xcworkspace

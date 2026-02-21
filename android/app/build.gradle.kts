@@ -9,7 +9,6 @@ android {
     namespace = "com.idknotes.idknotes"
     compileSdk = 36
     
-    // تغییر مهم: اینجا نسخه دقیق ۲۹ که دانلود کردید را وارد کنید
     ndkVersion = "29.0.14206865"
 
     compileOptions {
@@ -32,6 +31,12 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.getByName("debug")
+        }
+    }
+
+    applicationVariants.all { variant ->
+        variant.outputs.all {
+            outputFileName = "Idknotes.apk"
         }
     }
 }

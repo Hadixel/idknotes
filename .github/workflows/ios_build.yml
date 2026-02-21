@@ -26,5 +26,10 @@ jobs:
         run: |
           cd ios
           pod deintegrate
-          # اگر می‌خواهید پادها مجدد نصب شوند، خط زیر را هم اضافه کنید:
-          # pod install
+          pod install  # حالا این را هم اضافه کردیم تا فایل‌های جدید ساخته شوند
+
+      - name: Upload iOS Folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-files-after-pod  # نام فایل زیپی که دانلود می‌کنی
+          path: ios/                 # مسیری که می‌خواهی زیپ شود

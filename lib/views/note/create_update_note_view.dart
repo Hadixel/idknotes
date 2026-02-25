@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:idknotes/extensions/buildcontext/loc.dart';
 import 'package:idknotes/services/auth/auth_service.dart';
 import 'package:idknotes/utilities/dialogs/cannot_share_empty_note_dialog.dart';
 import 'package:idknotes/utilities/generics/get_arguments.dart';
 import 'package:idknotes/services/cloud/cloud_note.dart';
 import 'package:idknotes/services/cloud/firebase_cloud_storage.dart';
+import 'package:idknotes/utilities/helper/direction_helper.dart';
 import 'package:share_plus/share_plus.dart';
 
 class CreateUpdateNoteView extends StatefulWidget {
@@ -87,7 +89,7 @@ class CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('New Note'),
+        title: Text(context.loc.note),
         actions: [
           IconButton(
             onPressed: () async {
@@ -108,14 +110,23 @@ class CreateUpdateNoteViewState extends State<CreateUpdateNoteView> {
           switch (snapshot.connectionState) {
             case ConnectionState.done:
               _setupTextControllerListener();
-              return TextField(
-                controller: _textController,
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                decoration: const InputDecoration(
-                  hintText: 'Start Typing Your Note...',
-                ),
+
+              //this is for keeping direction in the correct way
+              return ValueListenableBuilder<TextEditingValue>(
+                valueListenable: _textController,
+                builder: (context, textValue, child) {
+                  return TextField(
+                    controller: _textController,
+                    keyboardType: TextInputType.multiline,
+                    maxLines: null,
+                    textDirection: textValue.text.getDirection, //text direction
+                    decoration: InputDecoration(
+                      hintText: context.loc.start_typing_your_note,
+                    ),
+                  );
+                },
               );
+
             default:
               return const CircularProgressIndicator();
           }

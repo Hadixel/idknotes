@@ -1,0 +1,63 @@
+{
+
+    "logout_button": "خروج از حساب",
+    "note": "یادداشت",
+    "cancel": "لغو",
+    "yes": "بله",
+    "delete": "حذف",
+    "sharing": "اشتراک‌گذاری",
+    "ok": "تایید",
+    "login": "ورود",
+    "verify_email": "تایید ایمیل",
+    "register": "ثبت‌نام",
+    "restart": "راه‌اندازی مجدد",
+
+    "start_typing_your_note": "نوشتن یادداشت را شروع کنید...",
+    "delete_note_prompt": "آیا از حذف این یادداشت مطمئن هستید؟",
+    "cannot_share_empty_note_prompt": "نمی‌توان یادداشت خالی را به اشتراک گذاشت!",
+    "generic_error_prompt": "خطایی رخ داد",
+    "logout_dialog_prompt": "آیا مطمئن هستید که می‌خواهید از حساب خود خارج شوید؟",
+
+    "password_reset": "بازیابی رمز عبور",
+    "password_reset_dialog_prompt": "لینک بازیابی رمز عبور برای شما ارسال شد. لطفاً برای اطلاعات بیشتر صندوق ورودی ایمیل خود را بررسی کنید.",
+
+    "login_error_cannot_find_user": "کاربری با این اطلاعات یافت نشد!",
+    "login_error_wrong_credentials": "ایمیل یا رمز عبور اشتباه است!",
+    "login_error_auth_error": "خطای احراز هویت",
+
+    "login_view_prompt": "برای ایجاد یادداشت و استفاده از برنامه، لطفاً وارد حساب کاربری خود شوید.",
+    
+    "login_view_forgot_password": "رمز عبور خود را فراموش کرده‌ام",
+    "login_view_not_registered_yet": "هنوز ثبت‌نام نکرده‌اید؟ اینجا ثبت‌نام کنید!",
+
+    "email_text_field_placeholder": "ایمیل خود را اینجا وارد کنید",
+    "password_text_field_placeholder": "رمز عبور خود را اینجا وارد کنید",
+    
+    "forgot_password": "فراموشی رمز عبور",
+    "forgot_password_view_generic_error": "مشکلی در پردازش درخواست شما پیش آمد. لطفاً مطمئن شوید که قبلاً ثبت‌نام کرده‌اید، در غیر این صورت به مرحله قبل برگردید و ثبت‌نام کنید.",
+    "forgot_password_view_prompt": "اگر رمز عبور خود را فراموش کرده‌اید، کافیست ایمیل خود را وارد کنید تا لینک بازیابی را برایتان ارسال کنیم.",
+    "forgot_password_view_send_me_link": "ارسال لینک بازیابی رمز عبور",
+    "forgot_password_view_back_to_login": "بازگشت به صفحه ورود",
+
+    "register_error_weak_password": "این رمز عبور به اندازه کافی امن نیست. لطفاً رمز قوی‌تری انتخاب کنید!",
+    "register_error_email_already_in_use": "این ایمیل قبلاً توسط کاربر دیگری ثبت شده است. لطفاً از ایمیل دیگری استفاده کنید!",
+    "register_error_generic": "ثبت‌نام با شکست مواجه شد. لطفاً کمی بعد دوباره تلاش کنید!",
+    "register_error_invalid_email": "به نظر می‌رسد آدرس ایمیل وارد شده نامعتبر است. لطفاً ایمیل درستی را وارد کنید!",
+    "register_view_prompt": "برای دیدن یادداشت‌های خود، ایمیل و رمز عبور را وارد کنید!",
+    "register_view_already_registered": "قبلاً ثبت‌نام کرده‌اید؟ از اینجا وارد شوید!",
+
+    "verify_email_view_prompt": "ما یک ایمیل تایید برای شما ارسال کرده‌ایم. لطفاً برای فعال‌سازی حساب، آن را باز کنید. اگر هنوز ایمیلی دریافت نکرده‌اید، دکمه زیر را لمس کنید!",
+    "verify_email_send_email_verification": "ارسال مجدد ایمیل تایید",
+
+    "wait_a_moment": "لطفاً چند لحظه صبر کنید...",
+
+    "notes_title": "{count, plural, =0{هنوز یادداشتی ندارید} =1{1 یادداشت} other{{count} یادداشت}}",
+    "@notes_title": {
+        "placeholders": {
+            "count": {
+                "type": "int",
+                "example": "3 notes"
+            }
+        }
+    }
+}

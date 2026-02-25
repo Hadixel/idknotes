@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:idknotes/constants/routes.dart';
+import 'package:idknotes/extensions/buildcontext/loc.dart';
 import 'package:idknotes/helpers/loading/loading_screen.dart';
 import 'package:idknotes/services/auth/bloc/auth_bloc.dart';
 import 'package:idknotes/services/auth/bloc/auth_event.dart';
@@ -12,11 +13,14 @@ import 'package:idknotes/views/note/create_update_note_view.dart';
 import 'package:idknotes/views/note/notes_view.dart';
 import 'package:idknotes/views/register_view.dart';
 import 'package:idknotes/views/verify_email_view.dart';
+import 'package:idknotes/l10n/app_localizations.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   runApp(
     MaterialApp(
+      supportedLocales: AppLocalizations.supportedLocales,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
       title: 'Idknotes',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
@@ -45,7 +49,7 @@ class HomePage extends StatelessWidget {
         if (state.isLoading) {
           LoadingScreen().show(
             context: context,
-            text: state.loadingText ?? 'Please wait a moment',
+            text: state.loadingText ?? context.loc.wait_a_moment,
           );
         } else {
           LoadingScreen().hide();

@@ -6,6 +6,9 @@ import 'package:idknotes/services/cloud/cloud_storage_exceptions.dart';
 class FirebaseCloudStorage {
   final notes = FirebaseFirestore.instance.collection('notes');
 
+  // 1. اضافه کردن نام فیلد جدید برای ذخیره زمان
+  static const createdAtFieldName = 'created_at';
+
   Future<void> deleteNote({required String documentId}) async {
     try {
       await notes.doc(documentId).delete();
@@ -28,6 +31,10 @@ class FirebaseCloudStorage {
   Stream<Iterable<CloudNote>> allNotes({required String ownerUserId}) {
     final allnotes = notes
         .where(ownerUserIdFieldName, isEqualTo: ownerUserId)
+        .orderBy(
+          createdAtFieldName,
+          descending: true,
+        ) // 2. دستور مرتب‌سازی (نزولی: جدیدترین بالا)
         .snapshots()
         .map((event) => event.docs.map((doc) => CloudNote.fromSnapshot(doc)));
     return allnotes;
@@ -37,7 +44,10 @@ class FirebaseCloudStorage {
     final document = await notes.add({
       ownerUserIdFieldName: ownerUserId,
       textFieldName: '',
+      createdAtFieldName:
+          FieldValue.serverTimestamp(), // 3. ذخیره زمان دقیق سرور
     });
+
     final fetchedNote = await document.get();
     return CloudNote(
       documentId: fetchedNote.id,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:idknotes/services/cloud/cloud_note.dart';
 import 'package:idknotes/utilities/dialogs/delete_dialog.dart';
+import 'package:idknotes/utilities/helper/direction_helper.dart';
 
 typedef NoteCallback = void Function(CloudNote note);
 
@@ -31,6 +32,7 @@ class NotesListView extends StatelessWidget {
             maxLines: 1,
             softWrap: true,
             overflow: TextOverflow.ellipsis,
+            textDirection: note.text.getDirection, // text direction
           ),
           trailing: IconButton(
             onPressed: () async {

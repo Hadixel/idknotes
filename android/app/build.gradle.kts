@@ -47,6 +47,14 @@ android {
             signingConfig = signingConfigs.getByName("release")
         }
     }
+    
+    applicationVariants.all {
+        val variant = this
+        variant.outputs.all {
+            val output = this as com.android.build.gradle.internal.api.BaseVariantOutputImpl
+            output.outputFileName = "Idknotes.apk"
+        }
+    }
 }
 
 kotlin {
